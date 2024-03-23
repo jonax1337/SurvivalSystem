@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SurvivalSystem">
+    <output-path>$PROJECT_DIR$/out/artifacts/SurvivalSystem</output-path>
+    <root id="archive" name="SurvivalSystem.jar">
+      <element id="module-output" name="SurvivalSystem" />
+    </root>
+  </artifact>
+</component>
