@@ -2,10 +2,8 @@ package dev.laux.survivalsystem;
 
 import dev.laux.survivalsystem.commands.*;
 import dev.laux.survivalsystem.listener.*;
+import dev.laux.survivalsystem.managers.*;
 import dev.laux.survivalsystem.util.ActionBarClock;
-import dev.laux.survivalsystem.managers.JobManager;
-import dev.laux.survivalsystem.managers.LocationManager;
-import dev.laux.survivalsystem.managers.MobLevelManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,10 +15,8 @@ public final class SurvivalSystem extends JavaPlugin {
     private MobLevelManager mobLevel;
 
     private JobManager jobManager;
-
-    public static SurvivalSystem getInstance() {
-        return instance;
-    }
+    private BackpackManager backpackManager;
+    private EnderBackpackManager enderBackpackManager;
 
     @Override
     public void onEnable() {
@@ -30,6 +26,10 @@ public final class SurvivalSystem extends JavaPlugin {
         locationManager = new LocationManager(this);
         // Job Manager
         jobManager = new JobManager(this);
+        // Backpack Manager
+        backpackManager = new BackpackManager(this);
+        // Ender Backpack Manager
+        enderBackpackManager = new EnderBackpackManager(this);
         // register Commands
         registerCommands();
         // register Events
@@ -60,6 +60,8 @@ public final class SurvivalSystem extends JavaPlugin {
         pluginManager.registerEvents(new MobDamageListener(this), this);
         pluginManager.registerEvents(new JobListener(this), this);
         pluginManager.registerEvents(new TeleportListener(), this);
+        pluginManager.registerEvents(new BackpackListener(backpackManager), this);
+        pluginManager.registerEvents(new EnderBackpackListener(enderBackpackManager), this);
     }
 
     private void registerCommands() {
@@ -68,6 +70,10 @@ public final class SurvivalSystem extends JavaPlugin {
         this.getCommand("lastdeath").setExecutor(new LastDeathCommand(this));
         this.getCommand("toggletimber").setExecutor(new ToggleTimberCommand(this));
         this.getCommand("job").setExecutor(new JobCommand(this));
+    }
+
+    public static SurvivalSystem getInstance() {
+        return instance;
     }
 
     public LocationManager getLocationManager() {
@@ -80,5 +86,9 @@ public final class SurvivalSystem extends JavaPlugin {
 
     public JobManager getJobManager() {
         return jobManager;
+    }
+
+    public BackpackManager getBackpackManager() {
+        return backpackManager;
     }
 }
