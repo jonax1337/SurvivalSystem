@@ -47,7 +47,7 @@ public final class SurvivalSystem extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // Save Mob Levels
         mobLevel.saveMobLevels();
     }
 

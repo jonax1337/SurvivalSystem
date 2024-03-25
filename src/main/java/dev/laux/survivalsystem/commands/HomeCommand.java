@@ -6,10 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.*;
 
 import java.sql.SQLException;
 
@@ -48,6 +45,12 @@ public class HomeCommand implements CommandExecutor {
                     Wolf wolf = (Wolf) entity;
                     if (wolf.isTamed() && wolf.getOwner().equals(player) && !wolf.isDead()) {
                         wolf.teleport(home);
+                    }
+                }
+                if (entity instanceof Cat) {
+                    Cat cat = (Cat) entity;
+                    if (cat.isTamed() && cat.getOwner().equals(player) && !cat.isDead()) {
+                        cat.teleport(home);
                     }
                 }
             }
