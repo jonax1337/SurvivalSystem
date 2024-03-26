@@ -9,6 +9,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JobManager {
     private final SurvivalSystem plugin;
@@ -49,16 +51,6 @@ public class JobManager {
         addCoinsToPlayer(player, coins);
     }
 
-    private int calculateCoins(JobType jobType) {
-        // Hier könntest du eine unterschiedliche Anzahl von Coins basierend auf dem Jobtyp zurückgeben
-        return switch (jobType) {
-            case MINER -> 5;
-            case LUMBERJACK -> 4;
-            case FARMER -> 3;
-            case HUNTER -> 6;
-            default -> 0;
-        };
-    }
 
     private void addCoinsToPlayer(Player player, int coins) {
         // Hier würdest du die externen API aufrufen, um die Coins dem Spielerkonto hinzuzufügen
@@ -67,5 +59,13 @@ public class JobManager {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<String> getAvailableJobs() {
+        List<String> jobs = new ArrayList<>();
+        for (JobType jobType : JobType.values()) {
+            jobs.add(jobType.name());
+        }
+        return jobs;
     }
 }
