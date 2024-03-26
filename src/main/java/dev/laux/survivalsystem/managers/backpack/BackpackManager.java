@@ -1,4 +1,4 @@
-package dev.laux.survivalsystem.managers;
+package dev.laux.survivalsystem.managers.backpack;
 
 import dev.laux.survivalsystem.SurvivalSystem;
 import org.bukkit.Bukkit;

@@ -1,4 +1,4 @@
-package dev.laux.survivalsystem.managers;
+package dev.laux.survivalsystem.managers.backpack;
 
 import dev.laux.survivalsystem.SurvivalSystem;
 import org.bukkit.Bukkit;
@@ -28,7 +28,6 @@ public class EnderBackpackManager implements Listener {
 
     public EnderBackpackManager(SurvivalSystem plugin) {
         this.plugin = plugin;
-
         // Erstelle die Backpacks.yml-Datei
         backpacksFile = new File(plugin.getDataFolder(), "enderbackpacks.yml");
         if (!backpacksFile.exists()) {
@@ -38,37 +37,31 @@ public class EnderBackpackManager implements Listener {
                 e.printStackTrace();
             }
         }
-
         // Lade die Backpacks.yml-Datei
         backpacksConfig = YamlConfiguration.loadConfiguration(backpacksFile);
-
         // Füge das Crafting-Rezept für den Rucksack hinzu
         addBackpackRecipe();
     }
 
     private void addBackpackRecipe() {
-        ItemStack backpack = createBackpack("UselessKitten");
+        ItemStack backpack = createBackpack("Korea_hihi7");
         NamespacedKey key = new NamespacedKey(plugin, "enderbackpack");
         ShapedRecipe recipe = new ShapedRecipe(key, backpack);
         recipe.shape("LLL", "LCL", "LLL");
         recipe.setIngredient('L', Material.OBSIDIAN);
-        recipe.setIngredient('C', Material.ENDER_CHEST);
+        recipe.setIngredient('C', Material.ENDER_PEARL);
         Bukkit.addRecipe(recipe);
     }
 
     private ItemStack createBackpack(String playerName) {
         // Erstelle ein neues ItemStack, das ein Spielerkopf ist
         ItemStack backpack = new ItemStack(Material.PLAYER_HEAD);
-
         // Erhalte die Meta-Daten des ItemStacks
         SkullMeta backpackMeta = (SkullMeta) backpack.getItemMeta();
-
         // Setze den Besitzer des Kopfes auf den angegebenen Spieler
         backpackMeta.setOwner(playerName);
-
         // Setze den Besitzer des Kopfes auf den angegebenen Spieler
         backpackMeta.setDisplayName("§rEnder Backpack");
-
         // Setze die Meta-Daten des Rucksacks
         backpack.setItemMeta(backpackMeta);
 

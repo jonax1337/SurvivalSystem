@@ -2,7 +2,11 @@ package dev.laux.survivalsystem;
 
 import dev.laux.survivalsystem.commands.*;
 import dev.laux.survivalsystem.listener.*;
+import dev.laux.survivalsystem.listener.backpack.BackpackListener;
+import dev.laux.survivalsystem.listener.backpack.EnderBackpackListener;
 import dev.laux.survivalsystem.managers.*;
+import dev.laux.survivalsystem.managers.backpack.BackpackManager;
+import dev.laux.survivalsystem.managers.backpack.EnderBackpackManager;
 import dev.laux.survivalsystem.util.ActionBarClock;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
